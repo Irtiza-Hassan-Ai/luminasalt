@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUMINA-SALT - Premium Lamp Salt</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="images/Logo.png" type="image/x-icon">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <div class="logo">
+    <img src="images/Logo.png" alt="LUMINA-SALT Logo" style="height:60px; vertical-align:middle;">
+    <!-- <span style="margin-left:10px;">LUMINA-SALT</span> -->
+</div>
+
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#" onclick="showPage('home')" class="nav-link">Home</a></li>
+                <li><a href="#" onclick="showPage('about')" class="nav-link">About</a></li>
+                <li><a href="#" onclick="showPage('products')" class="nav-link">Products</a></li>
+                <li><a href="#" onclick="showPage('contact')" class="nav-link">Contact</a></li>
+                <li><a href="#" onclick="showPage('login')" class="nav-link">Login</a></li>
+                <li><a href="#" onclick="showPage('cart')" class="cart-link">🛒 <span class="cart-count" id="cartCount">0</span></a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page active">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to LUMINA-SALT</h1>
+                <p>Premium Himalayan Salt Lamps for Your Home</p>
+                <button class="btn btn-primary" onclick="showPage('products')">Shop Now</button>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="features">
+                <div class="feature">
+                    <div class="feature-icon">✨</div>
+                    <h3>Premium Quality</h3>
+                    <p>100% authentic Himalayan salt lamps</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Eco-Friendly</h3>
+                    <p>Sustainable sourcing & packaging</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Fast Delivery</h3>
+                    <p>Ships within 2-3 business days</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💯</div>
+                    <h3>Guaranteed</h3>
+                    <p>30-day money back guarantee</p>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- ABOUT PAGE -->
+    <div id="about" class="page">
+        <div class="container about-container">
+            <h1>About LUMINA-SALT</h1>
+            <p>Founded in 2020, LUMINA-SALT is dedicated to bringing the natural beauty and health benefits of Himalayan salt lamps to your home. We source our salt directly from the pristine Himalayan mountains and craft each lamp with care.</p>
+            
+            <div class="about-points">
+                <div class="point">
+                    <h3>Our Mission</h3>
+                    <p>To provide premium quality salt lamps that enhance the ambiance of your space while promoting wellness and natural living.</p>
+                </div>
+                <div class="point">
+                    <h3>Premium Quality</h3>
+                    <p>Authentic Himalayan salt from sustainable sources with expert craftsmanship and quality control.</p>
+                </div>
+                <div class="point">
+                    <h3>Customer Support</h3>
+                    <p>Eco-friendly practices and lifetime customer support with competitive pricing.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PRODUCTS PAGE -->
+    <div id="products" class="page">
+        <div class="container">
+            <div class="products-header">
+                <h1>Our Products</h1>
+                <p>Explore our premium collection of authentic Himalayan salt lamps</p>
+            </div>
+            <div class="products-grid" id="productsGrid"></div>
+        </div>
+    </div>
+
+    <!-- CONTACT PAGE -->
+    <div id="contact" class="page">
+        <div class="container contact-container">
+            <h1>Contact Us</h1>
+            <div class="contact-content">
+                <div>
+                    <h3>Send us a Message</h3>
+                    <form class="contact-form" onsubmit="handleContactForm(event)">
+                        <input type="text" placeholder="Your Name" required>
+                        <input type="email" placeholder="Your Email" required>
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p><strong>Email:</strong> info.luminasalt@gmail.com</p>
+                    <p><strong>Phone:</strong> 03272581811</p>
+                    <p><strong>Address:</strong> Murtaza Chowrangi , Korangi Industrial Area</p>
+                    <p><strong>Hours:</strong> Mon-Fri: 9AM-6PM, Sat-Sun: 10AM-4PM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOGIN PAGE -->
+    <div id="login" class="page">
+        <div class="container login-container">
+            <h1>Account</h1>
+            <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
+                <h2>Login</h2>
+                <input type="email" id="loginEmail" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <button type="submit" class="btn btn-primary">Login</button>
+                <p><a href="#" onclick="toggleSignup(event)">Don't have an account? Register here</a></p>
+            </form>
+
+            <form class="login-form" id="signupForm" style="display: none;" onsubmit="handleSignup(event)">
+                <h2>Register</h2>
+                <input type="text" placeholder="Full Name" required>
+                <input type="email" placeholder="Email" required>
+                <input type="password" placeholder="Password" required>
+                <input type="password" placeholder="Confirm Password" required>
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+                <p><a href="#" onclick="toggleSignup(event)">Already have an account? Login here</a></p>
+            </form>
+        </div>
+    </div>
+
+    <!-- CART PAGE -->
+    <div id="cart" class="page">
+        <div class="container cart-container">
+            <h1>Shopping Cart</h1>
+            <div class="cart-content">
+                <div class="cart-items" id="cartItems"></div>
+                <div class="cart-summary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-item">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Tax (10%):</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total:</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                    <button class="btn btn-primary" onclick="goToCheckout()" style="width: 100%; margin-top: 20px;">Proceed to Checkout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT PAGE -->
+    <div id="checkout" class="page">
+        <div class="container checkout-container">
+            <h1>Checkout</h1>
+            <div class="checkout-content">
+                <form class="checkout-form" onsubmit="processCheckout(event)">
+                    <h3>Shipping Information</h3>
+                    <input type="text" id="fullName" placeholder="Full Name" required>
+                    <input type="email" id="email" placeholder="Email" required>
+                    <input type="text" id="address" placeholder="Address" required>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem;">
+                        <input type="text" id="city" placeholder="City" required>
+                        <input type="text" id="state" placeholder="State" required>
+                        <input type="text" id="zip" placeholder="ZIP Code" required>
+                    </div>
+
+                    <h3>Payment Information</h3>
+                    <input type="text" id="cardNumber" placeholder="Card Number" maxlength="16" required>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <input type="text" placeholder="MM/YY" maxlength="5" required>
+                        <input type="text" placeholder="CVV" maxlength="3" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px;">Complete Purchase</button>
+                </form>
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div id="checkoutSummary"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INVOICE PAGE -->
+    <div id="invoice" class="page">
+        <div class="container invoice-container">
+            <button class="btn btn-secondary" onclick="printInvoice()" style="margin-bottom: 20px;">Print Invoice</button>
+            <div class="invoice" id="invoiceContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 LUMINA-SALT. All rights reserved.</p>
+            <p>Premium Himalayan Salt Lamps | Eco-Friendly | Free Shipping on Orders Over $100</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -91,6 +91,32 @@
         </div>
     </div>
 
+    <!-- Chatbot Widget -->
+<div class="chatbot-widget">
+    <div class="chatbot-toggle" id="chatbotToggle">
+        <span>💬</span>
+    </div>
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <h3>LUMINA-SALT Assistant</h3>
+            <button class="chatbot-close" id="chatbotClose">×</button>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages">
+            <div class="message bot-message">
+                <p>Hello! I'm your LUMINA-SALT assistant. How can I help you with our Himalayan salt lamps today?</p>
+            </div>
+        </div>
+        <div class="chatbot-buttons">
+            <button class="chat-btn" data-message="hello">👋 Hello</button>
+            <button class="chat-btn" data-message="product">🛍️ Products</button>
+            <button class="chat-btn" data-message="price">💰 Pricing</button>
+            <button class="chat-btn" data-message="shipping">🚚 Shipping</button>
+            <button class="chat-btn" data-message="contact">📞 Contact</button>
+            <button class="chat-btn" data-message="thanks">🙏 Thanks</button>
+        </div>
+    </div>
+</div>
+
     <!-- PRODUCTS PAGE -->
     <div id="products" class="page">
         <div class="container">
@@ -161,15 +187,15 @@
                     <h3>Order Summary</h3>
                     <div class="summary-item">
                         <span>Subtotal:</span>
-                        <span id="subtotal">$0.00</span>
+                        <span id="subtotal">RS0.00</span>
                     </div>
                     <div class="summary-item">
                         <span>Tax (10%):</span>
-                        <span id="tax">$0.00</span>
+                        <span id="tax">RS0.00</span>
                     </div>
                     <div class="summary-item total">
                         <span>Total:</span>
-                        <span id="total">$0.00</span>
+                        <span id="total">RS0.00</span>
                     </div>
                     <button class="btn btn-primary" onclick="goToCheckout()" style="width: 100%; margin-top: 20px;">Proceed to Checkout</button>
                 </div>

@@ -138,7 +138,7 @@ function updateCart() {
     cartItem.innerHTML = `
       <div class="cart-item-info">
         <h3>${item.emoji} ${item.name}</h3>
-        <p class="cart-item-price">$${item.price.toFixed(2)} x ${item.quantity} = $${itemTotal.toFixed(2)}</p>
+        <p class="cart-item-price">RS${item.price.toFixed(2)} x ${item.quantity} = RS${itemTotal.toFixed(2)}</p>
       </div>
       <div class="cart-item-controls">
         <button class="btn btn-danger" onclick="removeFromCart(${item.id})">Remove</button>
@@ -150,9 +150,9 @@ function updateCart() {
   const tax = subtotal * 0.1
   const total = subtotal + tax
 
-  document.getElementById("subtotal").textContent = `$${subtotal.toFixed(2)}`
-  document.getElementById("tax").textContent = `$${tax.toFixed(2)}`
-  document.getElementById("total").textContent = `$${total.toFixed(2)}`
+  document.getElementById("subtotal").textContent = `RS${subtotal.toFixed(2)}`
+  document.getElementById("tax").textContent = `RS${tax.toFixed(2)}`
+  document.getElementById("total").textContent = `RS${total.toFixed(2)}`
 }
 
 function removeFromCart(productId) {
@@ -178,7 +178,7 @@ function updateCheckoutSummary() {
   cart.forEach((item) => {
     const itemTotal = item.price * item.quantity
     subtotal += itemTotal
-    html += `<li style='margin-bottom: 0.5rem;'>${item.emoji} ${item.name} x${item.quantity} - $${itemTotal.toFixed(2)}</li>`
+    html += `<li style='margin-bottom: 0.5rem;'>${item.emoji} ${item.name} x${item.quantity} - RS${itemTotal.toFixed(2)}</li>`
   })
   html += "</ul>"
 
@@ -186,9 +186,9 @@ function updateCheckoutSummary() {
   const total = subtotal + tax
 
   html += `
-    <p><strong>Subtotal:</strong> $${subtotal.toFixed(2)}</p>
-    <p><strong>Tax (10%):</strong> $${tax.toFixed(2)}</p>
-    <p style='font-size: 1.2rem; color: var(--primary-color); border-top: 2px solid var(--border-color); padding-top: 1rem; margin-top: 1rem;'><strong>Total:</strong> $${total.toFixed(2)}</p>
+    <p><strong>Subtotal:</strong> RS${subtotal.toFixed(2)}</p>
+    <p><strong>Tax (10%):</strong> RS${tax.toFixed(2)}</p>
+    <p style='font-size: 1.2rem; color: var(--primary-color); border-top: 2px solid var(--border-color); padding-top: 1rem; margin-top: 1rem;'><strong>Total:</strong> RS${total.toFixed(2)}</p>
   `
 
   summary.innerHTML = html
@@ -254,8 +254,8 @@ function generateInvoice(orderData) {
       <tr>
         <td>${item.emoji} ${item.name}</td>
         <td>${item.quantity}</td>
-        <td>$${item.price.toFixed(2)}</td>
-        <td>$${itemTotal.toFixed(2)}</td>
+        <td>RS${item.price.toFixed(2)}</td>
+        <td>RS${itemTotal.toFixed(2)}</td>
       </tr>
     `
   })
@@ -292,9 +292,9 @@ function generateInvoice(orderData) {
     ${itemsHTML}
     
     <div style="text-align: right; padding: 1rem; border-top: 2px solid var(--border-color);">
-      <p><strong>Subtotal:</strong> $${orderData.subtotal.toFixed(2)}</p>
-      <p><strong>Tax (10%):</strong> $${orderData.tax.toFixed(2)}</p>
-      <p class="invoice-total"><strong>Total:</strong> $${orderData.total.toFixed(2)}</p>
+      <p><strong>Subtotal:</strong> RS${orderData.subtotal.toFixed(2)}</p>
+      <p><strong>Tax (10%):</strong> RS${orderData.tax.toFixed(2)}</p>
+      <p class="invoice-total"><strong>Total:</strong> RS${orderData.total.toFixed(2)}</p>
     </div>
     
     <p style="text-align: center; margin-top: 2rem; color: #999; font-size: 0.9rem;">
@@ -346,3 +346,147 @@ function handleSignup(event) {
 
 updateCartCount()
 showPage("home")
+
+
+
+// Chatbot functionality with predefined buttons
+const chatbotToggle = document.getElementById('chatbotToggle');
+const chatbotContainer = document.getElementById('chatbotContainer');
+const chatbotClose = document.getElementById('chatbotClose');
+const chatbotMessages = document.getElementById('chatbotMessages');
+const chatButtons = document.querySelectorAll('.chat-btn');
+
+const CHATBOT_ENDPOINT = "";
+
+// Message responses mapping
+const MESSAGE_RESPONSES = {
+    'hello': "Hello! Welcome to LUMINA-SALT! I'm here to help you with our premium Himalayan salt lamps. What would you like to know about our products?",
+    'product': "We offer a wide range of authentic Himalayan salt lamps:\n\n• Glow Bowl - Rs 1,500\n• Cozy Glow - Rs 2,000\n• Fire Bowl - Rs 3,500\n• Decorative Pink Salt - Rs 5,000\n• Premium White Salt - Rs 2,500\n• Orange Salt Lamp - Rs 3,000\n• Red Salt Crystal - Rs 4,500\n• Bedroom Set - Rs 6,000\n• Office Desk Lamp - Rs 7,000\n• Himalayan Chunk - Rs 9,000\n\nAll our lamps are 100% authentic with 30-day guarantee!",
+    'price': "Our Himalayan salt lamps range from Rs 1,500 to Rs 9,000 with special discounts:\n\n✨ All products are currently discounted!\n✨ Free shipping on orders over Rs 10,000\n✨ Bulk orders get additional discounts\n\nWhich product are you interested in?",
+    'shipping': "🚚 Shipping Information:\n\n• Fast delivery within 2-3 business days\n• Free shipping on orders over Rs 10,000\n• Safe and secure packaging\n• Nationwide delivery across Pakistan\n• Order tracking available\n\nYour satisfaction is guaranteed!",
+    'contact': "📞 Contact LUMINA-SALT:\n\n📧 Email: info.luminasalt@gmail.com\n📞 Phone: 03272581811\n📍 Address: Murtaza Chowrangi, Korangi Industrial Area, Karachi\n⏰ Hours: Mon-Fri: 9AM-6PM, Sat-Sun: 10AM-4PM\n\nWe'd love to hear from you!",
+    'benefit': "✨ Benefits of Himalayan Salt Lamps:\n\n• Natural air purification\n• Creates calming ambiance\n• Reduces stress and improves sleep\n• Neutralizes electromagnetic radiation\n• Adds beautiful natural decor\n• Perfect for bedrooms, living rooms, and offices\n\nExperience the natural wellness benefits today!",
+    'thanks': "You're very welcome! 🙏\n\nThank you for choosing LUMINA-SALT. If you have any more questions about our Himalayan salt lamps, feel free to ask. We're here to help you create a naturally beautiful space!\n\nHave a wonderful day! 🌟"
+};
+
+// Toggle chatbot visibility
+chatbotToggle.addEventListener('click', () => {
+    chatbotContainer.classList.add('active');
+});
+
+chatbotClose.addEventListener('click', () => {
+    chatbotContainer.classList.remove('active');
+});
+
+// Handle button clicks
+chatButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const message = button.getAttribute('data-message');
+        const buttonText = button.textContent.replace(/[👋🛍️💰🚚📞✨🙏]/g, '').trim();
+        
+        // Add user message to chat
+        addMessage(buttonText, 'user');
+        
+        // Disable all buttons temporarily
+        chatButtons.forEach(btn => btn.disabled = true);
+        
+        // Show typing indicator
+        showTypingIndicator();
+        
+        // Send message after a short delay to simulate thinking
+        setTimeout(() => {
+            sendMessage(message);
+        }, 1000);
+    });
+});
+
+// Send message function
+async function sendMessage(messageType) {
+    try {
+        const response = await fetch(CHATBOT_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ 
+                message: MESSAGE_RESPONSES[messageType] || "Hello! How can I help you with LUMINA-SALT products?"
+            })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            removeTypingIndicator();
+            
+            if (data.response || data.answer || data.message) {
+                const botResponse = data.response || data.answer || data.message;
+                addMessage(botResponse, 'bot');
+            } else {
+                // Use our predefined response
+                addMessage(MESSAGE_RESPONSES[messageType], 'bot');
+            }
+        } else {
+            throw new Error('API not available');
+        }
+    } catch (error) {
+        console.error('Error sending message:', error);
+        removeTypingIndicator();
+        
+        // Use our predefined response as fallback
+        addMessage(MESSAGE_RESPONSES[messageType], 'bot');
+    } finally {
+        // Re-enable buttons
+        chatButtons.forEach(btn => btn.disabled = false);
+    }
+}
+
+// Add message to chat
+function addMessage(text, sender) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}-message`;
+    
+    const messageP = document.createElement('p');
+    // Preserve line breaks in the response
+    messageP.innerHTML = text.replace(/\n/g, '<br>');
+    
+    messageDiv.appendChild(messageP);
+    chatbotMessages.appendChild(messageDiv);
+    
+    // Scroll to bottom
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+// Show typing indicator
+function showTypingIndicator() {
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'typing-indicator';
+    typingDiv.id = 'typingIndicator';
+    
+    for (let i = 0; i < 3; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'typing-dot';
+        typingDiv.appendChild(dot);
+    }
+    
+    chatbotMessages.appendChild(typingDiv);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+}
+
+// Remove typing indicator
+function removeTypingIndicator() {
+    const typingIndicator = document.getElementById('typingIndicator');
+    if (typingIndicator) {
+        typingIndicator.remove();
+    }
+}
+
+// Close chatbot when clicking outside
+document.addEventListener('click', (e) => {
+    if (!chatbotContainer.contains(e.target) && !chatbotToggle.contains(e.target)) {
+        chatbotContainer.classList.remove('active');
+    }
+});
+
+// Prevent closing when clicking inside chatbot
+chatbotContainer.addEventListener('click', (e) => {
+    e.stopPropagation();
+});
